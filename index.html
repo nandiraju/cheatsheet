@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Developer Cheatsheet</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900 font-sans leading-relaxed">
+  <div class="max-w-6xl mx-auto p-8">
+    <h1 class="text-4xl font-bold text-blue-600 mb-6">📘 Developer Cheatsheet</h1>
+
+    <!-- Setup Commands -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4">📦 App Creation Commands</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <h3 class="text-xl font-medium mb-2 text-blue-500">Next.js 15</h3>
+          <pre class="bg-gray-800 text-green-200 p-4 rounded text-sm overflow-x-auto"><code>npx create-next-app@latest my-next-app
+cd my-next-app
+npm run dev
+npm run build
+npm start</code></pre>
+        </div>
+        <div>
+          <h3 class="text-xl font-medium mb-2 text-pink-500">Expo (React Native)</h3>
+          <pre class="bg-gray-800 text-green-200 p-4 rounded text-sm overflow-x-auto"><code>npm install -g expo-cli
+npx create-expo-app my-expo-app
+cd my-expo-app
+npx expo start
+# For builds:
+npx expo install eas-cli
+eas build --platform android</code></pre>
+        </div>
+        <div>
+          <h3 class="text-xl font-medium mb-2 text-purple-500">Vite + React + TS</h3>
+          <pre class="bg-gray-800 text-green-200 p-4 rounded text-sm overflow-x-auto"><code>npm create vite@latest my-vite-app -- --template react-ts
+cd my-vite-app
+npm install
+npm run dev
+npm run build</code></pre>
+        </div>
+        <div>
+          <h3 class="text-xl font-medium mb-2 text-yellow-500">Node.js + Express</h3>
+          <pre class="bg-gray-800 text-green-200 p-4 rounded text-sm overflow-x-auto"><code>mkdir my-express-app &amp;&amp; cd my-express-app
+npm init -y
+npm install express
+# index.js:
+# const app = express(); app.get('/', ...); app.listen(...);
+node index.js</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- React Snippets -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4">⚛️ React + TypeScript Hooks</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <h3 class="text-lg font-medium text-gray-700 mb-2">useState</h3>
+          <pre class="bg-gray-800 text-green-200 p-4 rounded text-sm overflow-x-auto"><code>const [count, setCount] = useState&lt;number&gt;(0)</code></pre>
+        </div>
+        <div>
+          <h3 class="text-lg font-medium text-gray-700 mb-2">useEffect</h3>
+          <pre class="bg-gray-800 text-green-200 p-4 rounded text-sm overflow-x-auto"><code>useEffect(() =&gt; {
+  // effect logic
+  return () =&gt; {
+    // cleanup
+  }
+}, [dependencies])</code></pre>
+        </div>
+        <div>
+          <h3 class="text-lg font-medium text-gray-700 mb-2">useCallback</h3>
+          <pre class="bg-gray-800 text-green-200 p-4 rounded text-sm overflow-x-auto"><code>const memoizedFn = useCallback(() =&gt; {
+  // logic
+}, [dependencies])</code></pre>
+        </div>
+        <div>
+          <h3 class="text-lg font-medium text-gray-700 mb-2">useMemo</h3>
+          <pre class="bg-gray-800 text-green-200 p-4 rounded text-sm overflow-x-auto"><code>const memoizedValue = useMemo(() =&gt; {
+  return computeExpensiveValue()
+}, [dependencies])</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- React Full Example -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4">⚙️ Full React Example</h2>
+      <pre class="bg-gray-800 text-green-200 p-4 rounded text-sm overflow-x-auto"><code>import &#123; useState, useEffect, useCallback, useMemo &#125; from 'react'
+
+function App() &#123;
+  const [count, setCount] = useState&lt;number&gt;(0)
+
+  useEffect(() =&gt; &#123;
+    console.log('Count updated:', count)
+  &#125;, [count])
+
+  const increment = useCallback(() =&gt; &#123;
+    setCount(prev =&gt; prev + 1)
+  &#125;, [])
+
+  const doubled = useMemo(() =&gt; count * 2, [count])
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Count: &#123;count&#125;&lt;/p&gt;
+      &lt;p&gt;Doubled: &#123;doubled&#125;&lt;/p&gt;
+      &lt;button onClick=&#123;increment&#125;&gt;Increment&lt;/button&gt;
+    &lt;/div&gt;
+  )
+&#125;
+
+export default App</code></pre>
+    </section>
+
+    <!-- React Native View Snippet -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4">📱 React Native View Example</h2>
+      <pre class="bg-gray-800 text-green-200 p-4 rounded text-sm overflow-x-auto"><code>import React from 'react'
+import &#123; View, Text, StyleSheet &#125; from 'react-native'
+
+export default function App() &#123;
+  return (
+    &lt;View style=&#123;styles.container&#125;&gt;
+      &lt;Text style=&#123;styles.title&#125;&gt;Hello from React Native!&lt;/Text&gt;
+    &lt;/View&gt;
+  )
+&#125;
+
+const styles = StyleSheet.create(&#123;
+  container: &#123;
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f0f0f0'
+  &#125;,
+  title: &#123;
+    fontSize: 20,
+    color: '#333'
+  &#125;
+&#125;)</code></pre>
+    </section>
+
+  </div>
+</body>
+</html>
