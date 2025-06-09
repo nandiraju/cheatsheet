@@ -7,6 +7,117 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 text-gray-900 font-sans leading-relaxed">
+
+
+Here are the key differences between `npx expo run:ios` and `npx expo start`:
+
+## `npx expo start`
+**Purpose**: Starts the Expo development server for testing with Expo Go or development builds
+
+**How it works**:
+- Starts Metro bundler (JavaScript bundler)
+- Generates a QR code and local URL
+- Runs your app in the **Expo Go app** or custom development builds
+- No native compilation required
+
+**Use cases**:
+- Quick development and testing
+- When using Expo SDK APIs only
+- Testing on physical devices with Expo Go
+- Prototyping and early development
+
+**Limitations**:
+- Can only use Expo SDK APIs
+- Cannot use custom native modules
+- Limited to what Expo Go supports
+
+```bash
+npx expo start
+# Options:
+npx expo start --ios        # Open iOS simulator
+npx expo start --android    # Open Android emulator  
+npx expo start --web        # Open in web browser
+npx expo start --clear      # Clear cache
+```
+
+## `npx expo run:ios`
+**Purpose**: Builds and runs a native iOS app with full native capabilities
+
+**How it works**:
+- Compiles your app into a native iOS app
+- Uses Xcode to build the project
+- Installs and runs on iOS Simulator or device
+- Creates actual native binaries
+
+**Use cases**:
+- When you need custom native modules
+- Using libraries that require native code
+- Testing device-specific features (camera, sensors, etc.)
+- Preparing for App Store submission
+- When you've "ejected" from Expo managed workflow
+
+**Requirements**:
+- macOS with Xcode installed
+- iOS Simulator or physical iOS device
+- More setup and build time
+
+```bash
+npx expo run:ios
+# Options:
+npx expo run:ios --device           # Run on physical device
+npx expo run:ios --simulator        # Specify simulator
+npx expo run:ios --configuration Release  # Release build
+```
+
+## When to Use Which?
+
+### Use `expo start` when:
+- You're in the **managed workflow**
+- Using only Expo SDK APIs
+- Quick development iterations
+- Testing basic functionality
+- You want fast reload times
+
+### Use `expo run:ios` when:
+- You need **custom native modules**
+- Using third-party libraries with native code
+- Testing device-specific features
+- You're in the **bare workflow**
+- Preparing for production builds
+
+## Workflow Comparison
+
+| Feature | `expo start` | `expo run:ios` |
+|---------|-------------|----------------|
+| Build time | Fast (seconds) | Slow (minutes) |
+| Native modules | Limited to Expo SDK | Full access |
+| Development speed | Very fast | Slower |
+| Real device testing | Via Expo Go | Direct installation |
+| Production-ready | No | Yes |
+| Xcode required | No | Yes |
+
+## Example Development Flow
+
+**Early development**:
+```bash
+npx expo start --ios  # Quick testing in Expo Go
+```
+
+**Adding native functionality**:
+```bash
+npx expo install react-native-some-native-library
+npx expo run:ios  # Now need native build
+```
+
+**Production preparation**:
+```bash
+npx expo run:ios --configuration Release
+```
+
+In summary: `expo start` is for quick development with Expo's managed environment, while `expo run:ios` gives you full native capabilities but requires more setup and build time.
+  
+  
+  
   <div class="max-w-6xl mx-auto p-8">
     <h1 class="text-4xl font-bold text-blue-600 mb-6">📘 Developer Cheatsheet</h1>
 
