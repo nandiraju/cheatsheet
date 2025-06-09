@@ -1,260 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Developer Cheatsheet</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Creation Cheat Sheet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
 </head>
-<body class="bg-gray-100 text-gray-900 font-sans leading-relaxed">
+<body class="bg-gray-50 text-gray-800 p-6 max-w-6xl mx-auto">
+    <header class="mb-10">
+        <h1 class="text-4xl font-bold text-indigo-700 mb-2">App Creation Cheat Sheet</h1>
+        <p class="text-lg text-gray-600">Quick start guides for modern app development</p>
+    </header>
 
+    <div class="grid md:grid-cols-2 gap-8">
+        <!-- Expo App - Updated Section -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden p-6">
+            <div class="flex items-center mb-4">
+                <div class="bg-indigo-100 p-3 rounded-lg mr-4">
+                    <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                </div>
+                <h2 class="text-2xl font-semibold">Expo App</h2>
+            </div>
+            
+            <div class="space-y-4">
+                <div>
+                    <h3 class="font-medium text-lg mb-2 text-gray-700">1. Install Expo CLI</h3>
+                    <code class="block bg-gray-100 p-3 rounded-md text-sm overflow-x-auto">npm install -g expo-cli</code>
+                </div>
+                
+                <div>
+                    <h3 class="font-medium text-lg mb-2 text-gray-700">2. Create new project</h3>
+                    <code class="block bg-gray-100 p-3 rounded-md text-sm overflow-x-auto">expo init my-app</code>
+                    <p class="text-sm text-gray-500 mt-1">Choose a template (blank, tabs, etc.)</p>
+                </div>
+                
+                <div>
+                    <h3 class="font-medium text-lg mb-2 text-gray-700">3. Navigate to project</h3>
+                    <code class="block bg-gray-100 p-3 rounded-md text-sm overflow-x-auto">cd my-app</code>
+                </div>
 
-Here are the key differences between `npx expo run:ios` and `npx expo start`:
+                <div class="pt-2 border-t border-gray-200">
+                    <h3 class="font-medium text-lg mb-2 text-gray-700">Development with Expo Go</h3>
+                    <code class="block bg-gray-100 p-3 rounded-md text-sm overflow-x-auto">expo start</code>
+                    <p class="text-sm text-gray-500 mt-1">Scan QR code with Expo Go app or use emulator</p>
+                </div>
 
-## `npx expo start`
-**Purpose**: Starts the Expo development server for testing with Expo Go or development builds
+                <div class="pt-2 border-t border-gray-200">
+                    <h3 class="font-medium text-lg mb-2 text-gray-700">Prebuild (for custom native code)</h3>
+                    <code class="block bg-gray-100 p-3 rounded-md text-sm overflow-x-auto">expo prebuild</code>
+                    <p class="text-sm text-gray-500 mt-1">Generates ios and android native directories</p>
+                </div>
 
-**How it works**:
-- Starts Metro bundler (JavaScript bundler)
-- Generates a QR code and local URL
-- Runs your app in the **Expo Go app** or custom development builds
-- No native compilation required
-
-**Use cases**:
-- Quick development and testing
-- When using Expo SDK APIs only
-- Testing on physical devices with Expo Go
-- Prototyping and early development
-
-**Limitations**:
-- Can only use Expo SDK APIs
-- Cannot use custom native modules
-- Limited to what Expo Go supports
-
-```bash
-npx expo start
-# Options:
-npx expo start --ios        # Open iOS simulator
-npx expo start --android    # Open Android emulator  
-npx expo start --web        # Open in web browser
-npx expo start --clear      # Clear cache
-```
-
-## `npx expo run:ios`
-**Purpose**: Builds and runs a native iOS app with full native capabilities
-
-**How it works**:
-- Compiles your app into a native iOS app
-- Uses Xcode to build the project
-- Installs and runs on iOS Simulator or device
-- Creates actual native binaries
-
-**Use cases**:
-- When you need custom native modules
-- Using libraries that require native code
-- Testing device-specific features (camera, sensors, etc.)
-- Preparing for App Store submission
-- When you've "ejected" from Expo managed workflow
-
-**Requirements**:
-- macOS with Xcode installed
-- iOS Simulator or physical iOS device
-- More setup and build time
-
-```bash
-npx expo run:ios
-# Options:
-npx expo run:ios --device           # Run on physical device
-npx expo run:ios --simulator        # Specify simulator
-npx expo run:ios --configuration Release  # Release build
-```
-
-## When to Use Which?
-
-### Use `expo start` when:
-- You're in the **managed workflow**
-- Using only Expo SDK APIs
-- Quick development iterations
-- Testing basic functionality
-- You want fast reload times
-
-### Use `expo run:ios` when:
-- You need **custom native modules**
-- Using third-party libraries with native code
-- Testing device-specific features
-- You're in the **bare workflow**
-- Preparing for production builds
-
-## Workflow Comparison
-
-| Feature | `expo start` | `expo run:ios` |
-|---------|-------------|----------------|
-| Build time | Fast (seconds) | Slow (minutes) |
-| Native modules | Limited to Expo SDK | Full access |
-| Development speed | Very fast | Slower |
-| Real device testing | Via Expo Go | Direct installation |
-| Production-ready | No | Yes |
-| Xcode required | No | Yes |
-
-## Example Development Flow
-
-**Early development**:
-```bash
-npx expo start --ios  # Quick testing in Expo Go
-```
-
-**Adding native functionality**:
-```bash
-npx expo install react-native-some-native-library
-npx expo run:ios  # Now need native build
-```
-
-**Production preparation**:
-```bash
-npx expo run:ios --configuration Release
-```
-
-In summary: `expo start` is for quick development with Expo's managed environment, while `expo run:ios` gives you full native capabilities but requires more setup and build time.
-  
-  
-  
-  <div class="max-w-6xl mx-auto p-8">
-    <h1 class="text-4xl font-bold text-blue-600 mb-6">📘 Developer Cheatsheet</h1>
-
-    <!-- Setup Commands -->
-    <section class="mb-10">
-      <h2 class="text-2xl font-semibold text-gray-800 mb-4">📦 App Creation Commands</h2>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div>
-          <h3 class="text-xl font-medium mb-2 text-blue-500">Next.js 15</h3>
-          <pre class="bg-gray-800 text-green-200 p-4 rounded text-sm overflow-x-auto"><code>npx create-next-app@latest my-next-app
-cd my-next-app
-npm run dev
-npm run build
-npm start</code></pre>
+                <div class="pt-2 border-t border-gray-200">
+                    <h3 class="font-medium text-lg mb-2 text-gray-700">Development Builds (EAS Build)</h3>
+                    <div class="space-y-2">
+                        <p class="text-sm text-gray-700">First install EAS CLI:</p>
+                        <code class="block bg-gray-100 p-3 rounded-md text-sm overflow-x-auto">npm install -g eas-cli</code>
+                        
+                        <p class="text-sm text-gray-700 mt-2">Login to Expo account:</p>
+                        <code class="block bg-gray-100 p-3 rounded-md text-sm overflow-x-auto">eas login</code>
+                        
+                        <p class="text-sm text-gray-700 mt-2">Configure project:</p>
+                        <code class="block bg-gray-100 p-3 rounded-md text-sm overflow-x-auto">eas build:configure</code>
+                        
+                        <p class="text-sm text-gray-700 mt-2">Build for development:</p>
+                        <code class="block bg-gray-100 p-3 rounded-md text-sm overflow-x-auto">eas build --profile development --platform android</code>
+                        <code class="block bg-gray-100 p-3 rounded-md text-sm overflow-x-auto mt-1">eas build --profile development --platform ios</code>
+                        <p class="text-sm text-gray-500 mt-1">Uses your own credentials for native builds</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div>
-          <h3 class="text-xl font-medium mb-2 text-pink-500">Expo (React Native)</h3>
-          <pre class="bg-gray-800 text-green-200 p-4 rounded text-sm overflow-x-auto"><code>npm install -g expo-cli
-npx create-expo-app my-expo-app
-cd my-expo-app
-npx expo start
-# For builds:
-npx expo install eas-cli
-eas build --platform android</code></pre>
+
+        <!-- NextJS App -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden p-6">
+            <div class="flex items-center mb-4">
+                <div class="bg-indigo-100 p-3 rounded-lg mr-4">
+                    <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                    </svg>
+                </div>
+                <h2 class="text-2xl font-semibold">Next.js App</h2>
+            </div>
+            
+            <div class="space-y-4">
+                <div>
+                    <h3 class="font-medium text-lg mb-2 text-gray-700">1. Create new project</h3>
+                    <code class="block bg-gray-100 p-3 rounded-md text-sm overflow-x-auto">npx create-next-app@latest</code>
+                    <p class="text-sm text-gray-500 mt-1">Follow prompts to configure project</p>
+                </div>
+                
+                <div>
+                    <h3 class="font-medium text-lg mb-2 text-gray-700">2. Navigate to project</h3>
+                    <code class="block bg-gray-100 p-3 rounded-md text-sm overflow-x-auto">cd my-app</code>
+                </div>
+                
+                <div>
+                    <h3 class="font-medium text-lg mb-2 text-gray-700">3. Start development</h3>
+                    <code class="block bg-gray-100 p-3 rounded-md text-sm overflow-x-auto">npm run dev</code>
+                    <p class="text-sm text-gray-500 mt-1">Runs on http://localhost:3000</p>
+                </div>
+                
+                <div>
+                    <h3 class="font-medium text-lg mb-2 text-gray-700">4. Build for production</h3>
+                    <code class="block bg-gray-100 p-3 rounded-md text-sm overflow-x-auto">npm run build</code>
+                    <code class="block bg-gray-100 p-3 rounded-md text-sm overflow-x-auto mt-2">npm start</code>
+                </div>
+            </div>
         </div>
-        <div>
-          <h3 class="text-xl font-medium mb-2 text-purple-500">Vite + React + TS</h3>
-          <pre class="bg-gray-800 text-green-200 p-4 rounded text-sm overflow-x-auto"><code>npm create vite@latest my-vite-app -- --template react-ts
-cd my-vite-app
-npm install
-npm run dev
-npm run build</code></pre>
+
+        <!-- Vite React App -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden p-6">
+            <div class="flex items-center mb-4">
+                <div class="bg-indigo-100 p-3 rounded-lg mr-4">
+                    <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                <h2 class="text-2xl font-semibold">Vite React App</h2>
+            </div>
+            
+            <div class="space-y-4">
+                <div>
+                    <h3 class="font-medium text-lg mb-2 text-gray-700">1. Create new project</h3>
+                    <code class="block bg-gray-100 p-3 rounded-md text-sm overflow-x-auto">npm create vite@latest my-app -- --template react</code>
+                    <p class="text-sm text-gray-500 mt-1">For TypeScript: use --template react-ts</p>
+                </div>
+                
+                <div>
+                    <h3 class="font-medium text-lg mb-2 text-gray-700">2. Navigate to project</h3>
+                    <code class="block bg-gray-100 p-3 rounded-md text-sm overflow-x-auto">cd my-app</code>
+                </div>
+                
+                <div>
+                    <h3 class="font-medium text-lg mb-2 text-gray-700">3. Install dependencies</h3>
+                    <code class="block bg-gray-100 p-3 rounded-md text-sm overflow-x-auto">npm install</code>
+                </div>
+                
+                <div>
+                    <h3 class="font-medium text-lg mb-2 text-gray-700">4. Start development</h3>
+                    <code class="block bg-gray-100 p-3 rounded-md text-sm overflow-x-auto">npm run dev</code>
+                    <p class="text-sm text-gray-500 mt-1">Runs on http://localhost:5173</p>
+                </div>
+            </div>
         </div>
-        <div>
-          <h3 class="text-xl font-medium mb-2 text-yellow-500">Node.js + Express</h3>
-          <pre class="bg-gray-800 text-green-200 p-4 rounded text-sm overflow-x-auto"><code>mkdir my-express-app &amp;&amp; cd my-express-app
-npm init -y
-npm install express
-# index.js:
-# const app = express(); app.get('/', ...); app.listen(...);
-node index.js</code></pre>
+
+        <!-- NodeJS Express App -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden p-6">
+            <div class="flex items-center mb-4">
+                <div class="bg-indigo-100 p-3 rounded-lg mr-4">
+                    <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path>
+                    </svg>
+                </div>
+                <h2 class="text-2xl font-semibold">Node.js Express App</h2>
+            </div>
+            
+            <div class="space-y-4">
+                <div>
+                    <h3 class="font-medium text-lg mb-2 text-gray-700">1. Initialize project</h3>
+                    <code class="block bg-gray-100 p-3 rounded-md text-sm overflow-x-auto">mkdir my-app && cd my-app</code>
+                    <code class="block bg-gray-100 p-3 rounded-md text-sm overflow-x-auto mt-2">npm init -y</code>
+                </div>
+                
+                <div>
+                    <h3 class="font-medium text-lg mb-2 text-gray-700">2. Install Express</h3>
+                    <code class="block bg-gray-100 p-3 rounded-md text-sm overflow-x-auto">npm install express</code>
+                </div>
+                
+                <div>
+                    <h3 class="font-medium text-lg mb-2 text-gray-700">3. Create server file</h3>
+                    <code class="block bg-gray-100 p-3 rounded-md text-sm overflow-x-auto">touch server.js</code>
+                    <p class="text-sm text-gray-500 mt-1">Add this basic server code:</p>
+                    <code class="block bg-gray-100 p-3 rounded-md text-sm overflow-x-auto mt-2">
+const express = require('express');<br>
+const app = express();<br>
+const PORT = 3000;<br><br>
+app.get('/', (req, res) => {<br>
+&nbsp;&nbsp;res.send('Hello World!');<br>
+});<br><br>
+app.listen(PORT, () => {<br>
+&nbsp;&nbsp;console.log(`Server running on http://localhost:${PORT}`);<br>
+});
+                    </code>
+                </div>
+                
+                <div>
+                    <h3 class="font-medium text-lg mb-2 text-gray-700">4. Start server</h3>
+                    <code class="block bg-gray-100 p-3 rounded-md text-sm overflow-x-auto">node server.js</code>
+                </div>
+            </div>
         </div>
-      </div>
-    </section>
+    </div>
 
-    <!-- React Snippets -->
-    <section class="mb-10">
-      <h2 class="text-2xl font-semibold text-gray-800 mb-4">⚛️ React + TypeScript Hooks</h2>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div>
-          <h3 class="text-lg font-medium text-gray-700 mb-2">useState</h3>
-          <pre class="bg-gray-800 text-green-200 p-4 rounded text-sm overflow-x-auto"><code>const [count, setCount] = useState&lt;number&gt;(0)</code></pre>
-        </div>
-        <div>
-          <h3 class="text-lg font-medium text-gray-700 mb-2">useEffect</h3>
-          <pre class="bg-gray-800 text-green-200 p-4 rounded text-sm overflow-x-auto"><code>useEffect(() =&gt; {
-  // effect logic
-  return () =&gt; {
-    // cleanup
-  }
-}, [dependencies])</code></pre>
-        </div>
-        <div>
-          <h3 class="text-lg font-medium text-gray-700 mb-2">useCallback</h3>
-          <pre class="bg-gray-800 text-green-200 p-4 rounded text-sm overflow-x-auto"><code>const memoizedFn = useCallback(() =&gt; {
-  // logic
-}, [dependencies])</code></pre>
-        </div>
-        <div>
-          <h3 class="text-lg font-medium text-gray-700 mb-2">useMemo</h3>
-          <pre class="bg-gray-800 text-green-200 p-4 rounded text-sm overflow-x-auto"><code>const memoizedValue = useMemo(() =&gt; {
-  return computeExpensiveValue()
-}, [dependencies])</code></pre>
-        </div>
-      </div>
-    </section>
-
-    <!-- React Full Example -->
-    <section class="mb-10">
-      <h2 class="text-2xl font-semibold text-gray-800 mb-4">⚙️ Full React Example</h2>
-      <pre class="bg-gray-800 text-green-200 p-4 rounded text-sm overflow-x-auto"><code>import &#123; useState, useEffect, useCallback, useMemo &#125; from 'react'
-
-function App() &#123;
-  const [count, setCount] = useState&lt;number&gt;(0)
-
-  useEffect(() =&gt; &#123;
-    console.log('Count updated:', count)
-  &#125;, [count])
-
-  const increment = useCallback(() =&gt; &#123;
-    setCount(prev =&gt; prev + 1)
-  &#125;, [])
-
-  const doubled = useMemo(() =&gt; count * 2, [count])
-
-  return (
-    &lt;div&gt;
-      &lt;p&gt;Count: &#123;count&#125;&lt;/p&gt;
-      &lt;p&gt;Doubled: &#123;doubled&#125;&lt;/p&gt;
-      &lt;button onClick=&#123;increment&#125;&gt;Increment&lt;/button&gt;
-    &lt;/div&gt;
-  )
-&#125;
-
-export default App</code></pre>
-    </section>
-
-    <!-- React Native View Snippet -->
-    <section class="mb-10">
-      <h2 class="text-2xl font-semibold text-gray-800 mb-4">📱 React Native View Example</h2>
-      <pre class="bg-gray-800 text-green-200 p-4 rounded text-sm overflow-x-auto"><code>import React from 'react'
-import &#123; View, Text, StyleSheet &#125; from 'react-native'
-
-export default function App() &#123;
-  return (
-    &lt;View style=&#123;styles.container&#125;&gt;
-      &lt;Text style=&#123;styles.title&#125;&gt;Hello from React Native!&lt;/Text&gt;
-    &lt;/View&gt;
-  )
-&#125;
-
-const styles = StyleSheet.create(&#123;
-  container: &#123;
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f0f0f0'
-  &#125;,
-  title: &#123;
-    fontSize: 20,
-    color: '#333'
-  &#125;
-&#125;)</code></pre>
-    </section>
-
-  </div>
+    <footer class="mt-12 text-center text-gray-500 text-sm">
+        <p>Cheat sheet for app creation - Updated June 2023</p>
+    </footer>
 </body>
 </html>
