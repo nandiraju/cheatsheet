@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Expo App Build Types Reference</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Poppins', sans-serif; }
+    code { font-family: 'Courier Prime', monospace; font-size: 0.95rem; background: #f5f5f5; padding: 2px 4px; border-radius: 4px; }
+    pre code { display: block; padding: 1rem; overflow-x: auto; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <div class="max-w-4xl mx-auto py-10 px-5">
+    <h1 class="text-4xl font-semibold mb-8 text-center">Expo App Build Types • Reference Guide</h1>
+
+    <!-- Section -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold mb-3">Expo Go Application</h2>
+      <p class="mb-4">
+        <strong>Purpose:</strong> Fastest way to preview your app. Uses Expo's bundled app with common SDK support (e.g., camera, file system). Ideal for quick testing and sharing.
+      </p>
+      <p class="mb-2"><strong>Characteristics:</strong> Live reload support, quick setup, but limited to the bundled SDK version. Does not include React Native debug view. No need for Xcode/Android Studio.</p>
+      <div class="bg-gray-100 p-4 rounded-lg mb-4">
+        <strong>Commands:</strong>
+        <pre><code>npx expo start
+# then scan QR code or press:
+#   a → Android emulator
+#   i → iOS simulator
+#   w → Web browser</code></pre>
+      </div>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold mb-3">Expo Pre‑build (Development Build)</h2>
+      <p class="mb-4">
+        <strong>Purpose:</strong> Generates native Android/iOS projects based on your <code>app.json</code>. Required to use custom native modules not available in Expo Go.
+      </p>
+      <p class="mb-2"><strong>Characteristics:</strong> Full native flexibility, supports live reload and React Native debugging menu. Equivalent to old “eject” process.</p>
+      <div class="bg-gray-100 p-4 rounded-lg mb-4">
+        <strong>Commands:</strong>
+        <pre><code>npx expo prebuild
+
+# To run:
+npx expo run:ios    # iOS simulator/device (Mac only)
+npx expo run:android
+
+# Nuke & rebuild native folders:
+npx expo prebuild --clean
+
+# Add developer menu:
+npx expo install expo-dev-client</code></pre>
+      </div>
+      <p class="italic text-sm">Note: macOS is required for iOS development.</p>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold mb-3">Local Native Builds (Xcode/Android Studio or CLI)</h2>
+      <p class="mb-4">
+        <strong>Purpose:</strong> Use native IDEs or CLI tools to build standalone release apps for submission to App Stores.
+      </p>
+      <p class="mb-2"><strong>Characteristics:</strong> Debug development builds with Metro, and produce self-contained release apps. Modify native configs carefully—prefer config plugins.</p>
+      <div class="bg-gray-100 p-4 rounded-lg mb-4">
+        <strong>Process:</strong>
+        <pre><code># Run in dev mode from native IDE:
+npx expo start  # Metro server
+
+# Release build via CLI:
+npx expo run:ios --configuration Release [--device]
+npx expo run:android --variant release
+
+# Or use native IDE:
+# Xcode → Product → Archive
+# Android Studio → Build → Generate Signed Bundle/APK
+
+# Pure Gradle:
+cd android && ./gradlew assembleRelease</code></pre>
+      </div>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold mb-3">EAS Builds (Expo Application Services)</h2>
+      <p class="mb-4">
+        <strong>Purpose:</strong> Cloud-hosted or local build service for producing app binaries easily—including iOS builds on Windows.
+      </p>
+      <p class="mb-2"><strong>Characteristics:</strong> Handles provisioning, codesigning, integrates with Fastlane, includes free tier for occasional use. Local builds mimic cloud behavior.
+      </p>
+      <div class="bg-gray-100 p-4 rounded-lg mb-4">
+        <strong>Commands:</strong>
+        <pre><code># Log in & configure
+eas login
+eas build:configure
+
+# Cloud builds:
+eas build --profile <profile> --platform <ios|android|all>
+
+# Local builds:
+eas build --profile <profile> --platform <ios|android> --local
+
+# Device management (iOS):
+eas device:create</code></pre>
+      </div>
+      <p class="italic text-sm">Note: iOS local builds still require macOS; cloud builds work cross‑platform.</p>
+    </section>
+
+
+  </div>
+</body>
+</html>
