@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interview Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 p-8 font-sans">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+    <!-- Card 1 -->
+    <div class="bg-white rounded-2xl p-6 shadow-[0_4px_24px_rgba(0,0,0,0.06)] flex flex-col justify-between">
+      <div class="bg-gray-100 p-4 rounded-xl flex items-center space-x-3">
+        <img src="https://i.pravatar.cc/32" class="rounded-full w-8 h-8" />
+        <div class="flex-1 space-y-2">
+          <div class="h-3 bg-gray-300 rounded w-3/4"></div>
+          <div class="h-3 bg-gray-300 rounded w-1/2"></div>
+        </div>
+      </div>
+      <button class="mt-4 bg-blue-600 text-white text-sm font-semibold px-4 py-2 rounded-full w-fit">Apply Now</button>
+      <h3 class="mt-6 text-lg font-semibold text-black">Creating a job listing is super easy</h3>
+      <p class="text-gray-500 text-sm">Effortlessly create jobs that are then instantly ready for candidates to interview</p>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="bg-white rounded-2xl p-6 shadow-[0_4px_24px_rgba(0,0,0,0.06)] flex flex-col justify-between">
+      <div class="flex justify-between items-start">
+        <div>
+          <p class="text-sm font-medium text-gray-700">Interviews 24 hours</p>
+          <h2 class="text-3xl font-bold text-blue-600 mt-1">102</h2>
+        </div>
+        <div class="text-blue-600 text-xs bg-blue-100 px-2 py-1 rounded-full font-medium">⬆ 100% <span class="text-gray-500">vs last month</span></div>
+      </div>
+      <div class="w-full h-24 mt-6">
+        <svg class="w-full h-full" viewBox="0 0 200 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 90 L40 60 L80 80 L120 30 L160 50 L200 40" stroke="#2563eb" stroke-width="2" fill="none"/>
+        </svg>
+      </div>
+      <h3 class="mt-6 text-lg font-semibold text-black">Data-Driven Decisions</h3>
+      <p class="text-gray-500 text-sm">Figure out who your top candidates are hire the ones that are the best fit</p>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="bg-white rounded-2xl p-6 shadow-[0_4px_24px_rgba(0,0,0,0.06)] flex flex-col justify-between items-center text-center">
+      <div class="bg-gray-100 rounded-full p-6">
+        <div class="bg-blue-500 text-white rounded-full p-4 text-2xl font-bold">👔</div>
+      </div>
+      <h3 class="mt-6 text-lg font-semibold text-black">Scalable, Always-On Screening</h3>
+      <p class="text-gray-500 text-sm">Screen hundreds of applicants simultaneously without adding headcount or hours to your team’s workload.</p>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="bg-white rounded-2xl p-6 shadow-[0_4px_24px_rgba(0,0,0,0.06)] flex flex-col justify-between text-center items-center">
+      <div class="bg-gray-100 p-4 rounded-xl flex items-center space-x-3">
+        <img src="https://i.pravatar.cc/33" class="rounded-full w-8 h-8" />
+        <div class="text-left">
+          <p class="font-semibold text-sm">Interviewer</p>
+          <p class="text-sm text-gray-600">Please share a relevant challenging experience.</p>
+        </div>
+      </div>
+      <h3 class="mt-6 text-lg font-semibold text-black">Adaptive, Role-Specific Questions</h3>
+      <p class="text-gray-500 text-sm">Our AI tailors interview questions to the job description and resume ensuring relevance and depth.</p>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="bg-white rounded-2xl p-6 shadow-[0_4px_24px_rgba(0,0,0,0.06)] flex flex-col justify-between text-center items-center">
+      <div class="bg-gray-100 p-4 rounded-xl flex items-center space-x-3">
+        <img src="https://i.pravatar.cc/34" class="rounded-full w-8 h-8" />
+        <div class="text-left">
+          <p class="font-bold text-lg text-black">92/100</p>
+          <div class="h-3 bg-gray-300 rounded w-24 my-1"></div>
+          <div class="h-3 bg-gray-300 rounded w-16"></div>
+          <span class="inline-block mt-2 bg-blue-100 text-blue-600 text-xs font-medium px-3 py-1 rounded-full">👍 Accepted</span>
+        </div>
+      </div>
+      <h3 class="mt-6 text-lg font-semibold text-black">Structured Performance Insights</h3>
+      <p class="text-gray-500 text-sm">Each interview is scored and analyzed giving you clear and consistent data.</p>
+    </div>
+
+  </div>
+</body>
+</html>
